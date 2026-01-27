@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ userName, location, unreadCount = 0 }) 
     <header className="bg-gradient-to-r from-green-600 to-green-700 text-white p-4 rounded-b-xl shadow-lg">
       <div className="flex justify-between items-center">
         <div className="flex-1">
-          <h1 className="text-xl font-bold">नमस्ते, {userName}</h1>
+          <h1 className="text-xl font-bold">Hello, {userName}</h1>
           <div className="flex items-center mt-1">
             <MapPin size={16} className="mr-1" />
             <span className="text-sm opacity-90">{location}</span>

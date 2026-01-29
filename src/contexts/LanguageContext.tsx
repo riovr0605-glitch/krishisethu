@@ -35,6 +35,7 @@ const translations = {
     // Navigation
     'nav.home': 'Home',
     'nav.market': 'Market',
+    'nav.traders': 'Traders',
     'nav.sell': 'Sell',
     'nav.buy': 'Buy',
     'nav.chat': 'Chat',
@@ -184,6 +185,7 @@ const translations = {
     // Navigation
     'nav.home': 'होम',
     'nav.market': 'बाज़ार',
+    'nav.traders': 'व्यापारी',
     'nav.sell': 'बेचें',
     'nav.buy': 'खरीदें',
     'nav.chat': 'चैट',
@@ -333,6 +335,7 @@ const translations = {
     // Navigation
     'nav.home': 'ಮನೆ',
     'nav.market': 'ಮಾರುಕಟ್ಟೆ',
+    'nav.traders': 'ವ್ಯಾಪಾರಿಗಳು',
     'nav.sell': 'ಮಾರಾಟ',
     'nav.buy': 'ಖರೀದಿ',
     'nav.chat': 'ಚಾಟ್',

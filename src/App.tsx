@@ -13,6 +13,7 @@ import EnhancedBiddingSystem from './components/Bidding/EnhancedBiddingSystem';
 import EnhancedChatInterface from './components/Chat/EnhancedChatInterface';
 import TransactionTracking from './components/Transaction/TransactionTracking';
 import GovernmentSchemes from './components/Government/GovernmentSchemes';
+import TraderListingsForFarmers from './components/Trader/TraderListingsForFarmers';
 import { 
   mockUsers, 
   mockProduce, 
@@ -148,6 +149,7 @@ function App() {
             onAddProduce={() => setActiveTab('add')}
             onViewPrices={() => setActiveTab('market')}
             onViewSchemes={() => setActiveTab('schemes')}
+            onViewTraders={() => setActiveTab('traders')}
           />
         ) : (
           <div className="p-4 space-y-6">
@@ -270,6 +272,15 @@ function App() {
 
       case 'schemes':
         return <GovernmentSchemes schemes={mockGovernmentSchemes} />;
+      
+      case 'traders':
+        return (
+          <TraderListingsForFarmers
+            traders={mockUsers.filter(u => u.type === 'trader')}
+            myProduce={produces.filter(p => p.farmerId === currentUser.id)}
+            onContactTrader={(trader) => setChatUser(trader)}
+          />
+        );
       
       default:
         return <div>Page not found</div>;

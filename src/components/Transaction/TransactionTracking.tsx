@@ -368,6 +368,9 @@ const TransactionTracking: React.FC<TransactionTrackingProps> = ({
             <p className="text-xs text-green-700 mt-1">
               आपका भुगतान एस्क्रो में सुरक्षित है। फसल की पुष्टि के बाद ही किसान को भुगतान होगा।
             </p>
+          </div>
+        </div>
+
         {showPaymentDetails && (
           <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6">
             <h4 className="text-lg font-semibold text-gray-800 mb-4">भुगतान विवरण / Payment Breakdown</h4>

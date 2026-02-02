@@ -14,6 +14,11 @@ import EnhancedChatInterface from './components/Chat/EnhancedChatInterface';
 import TransactionTracking from './components/Transaction/TransactionTracking';
 import GovernmentSchemes from './components/Government/GovernmentSchemes';
 import TraderListingsForFarmers from './components/Trader/TraderListingsForFarmers';
+import AdminDashboard from './components/Admin/AdminDashboard';
+import TraderVerification from './components/Admin/TraderVerification';
+import DisputeResolution from './components/Admin/DisputeResolution';
+import PriceDataUpload from './components/Admin/PriceDataUpload';
+import SchemeManagement from './components/Admin/SchemeManagement';
 import { 
   mockUsers, 
   mockProduce, 
@@ -34,6 +39,7 @@ function App() {
   const [chatUser, setChatUser] = useState<User | null>(null);
   const [showTransaction, setShowTransaction] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState(mockTransactions[0]);
+  const [adminSection, setAdminSection] = useState('dashboard');
 
   const handleSplashComplete = () => {
     setAppState('language');
@@ -44,7 +50,7 @@ function App() {
     setAppState('auth');
   };
 
-  const handleLogin = (userType: 'farmer' | 'trader') => {
+  const handleLogin = (userType: 'farmer' | 'trader' | 'admin') => {
     const user = mockUsers.find(u => u.type === userType) || mockUsers[0];
     setCurrentUser(user);
     setAppState('main');
@@ -172,7 +178,9 @@ function App() {
               लेन-देन ट्रैक करें / Track Transaction
             </button>
           </div>
-        );
+        ) : currentUser.type === 'admin' ? (
+          renderAdminContent()
+        ) : null;
       
       case 'market':
         return <EnhancedMarketPrices prices={mockMarketPrices} />;
@@ -296,6 +304,23 @@ function App() {
     }
   };
 
+  const renderAdminContent = () => {
+    switch (adminSection) {
+      case 'dashboard':
+        return <AdminDashboard onNavigate={setAdminSection} />;
+      case 'verification':
+        return <TraderVerification onBack={() => setAdminSection('dashboard')} />;
+      case 'disputes':
+        return <DisputeResolution onBack={() => setAdminSection('dashboard')} />;
+      case 'prices':
+        return <PriceDataUpload onBack={() => setAdminSection('dashboard')} />;
+      case 'schemes':
+        return <SchemeManagement onBack={() => setAdminSection('dashboard')} />;
+      default:
+        return <AdminDashboard onNavigate={setAdminSection} />;
+    }
+  };
+
   return (
     <LanguageProvider>
       {appState === 'language' && (
@@ -321,7 +346,13 @@ function App() {
           {!chatUser && !showBidding && !showTransaction && (
             <Navigation
               activeTab={activeTab}
-              onTabChange={setActiveTab}
+              onTabChange={(tab) => {
+                if (currentUser.type === 'admin') {
+                  setAdminSection(tab);
+                } else {
+                  setActiveTab(tab);
+                }
+              }}
               userType={currentUser.type}
             />
           )}

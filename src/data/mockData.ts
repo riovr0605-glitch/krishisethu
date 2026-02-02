@@ -16,6 +16,14 @@ export const mockUsers: User[] = [
     type: 'trader',
     location: 'APMC Market, Pune',
     verified: true
+  },
+  {
+    id: '550e8400-e29b-41d4-a716-446655440003',
+    name: 'Admin User',
+    phone: '+91-9876543212',
+    type: 'admin',
+    location: 'Platform Admin',
+    verified: true
   }
 ];
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Hop as Home, TrendingUp, Plus, MessageCircle, User, Settings, Users, Shield, TriangleAlert as AlertTriangle, Gift } from 'lucide-react';
+import { Home, TrendingUp, Plus, MessageCircle, User, Settings, Users, Shield } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 interface NavigationProps {
@@ -32,6 +33,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange, userTyp
     { id: 'disputes', icon: AlertTriangle, labelKey: 'nav.disputes' },
     { id: 'prices', icon: TrendingUp, labelKey: 'nav.prices' },
     { id: 'schemes', icon: Gift, labelKey: 'nav.schemes' }
+    { id: 'disputes', icon: Settings, labelKey: 'nav.disputes' },
+    { id: 'prices', icon: TrendingUp, labelKey: 'nav.prices' },
+    { id: 'schemes', icon: User, labelKey: 'nav.schemes' }
   ];
 
   const tabs = userType === 'farmer' ? farmerTabs : userType === 'trader' ? traderTabs : adminTabs;
@@ -46,7 +50,15 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange, userTyp
           return (
             <button
               key={tab.id}
-              onClick={() => onTabChange(tab.id)}
+              onClick={() => {
+                if (userType === 'admin') {
+                  // For admin, we need to handle navigation differently
+                  // This will be handled by the parent component
+                  onTabChange(tab.id);
+                } else {
+                  onTabChange(tab.id);
+                }
+              }}
               className={`flex flex-col items-center py-2 px-4 rounded-lg transition-colors ${
                 isActive 
                   ? 'text-green-600 bg-green-50' 

@@ -199,6 +199,31 @@ const LoginRegistration: React.FC<LoginRegistrationProps> = ({ onLogin }) => {
                   )}
                 </div>
               </button>
+
+              {/* Admin Role - Hidden button for demo purposes */}
+              <button
+                onClick={() => setSelectedRole('admin')}
+                className={`w-full p-6 rounded-xl border-2 transition-all duration-200 ${
+                  selectedRole === 'admin'
+                    ? 'border-purple-500 bg-purple-50 shadow-md'
+                    : 'border-gray-200 bg-white hover:border-purple-300'
+                }`}
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                    <Shield size={24} className="text-purple-600" />
+                  </div>
+                  <div className="text-left flex-1">
+                    <h3 className="text-lg font-semibold text-gray-800">Administrator</h3>
+                    <p className="text-xs text-gray-500 mt-1">Platform administration access</p>
+                  </div>
+                  {selectedRole === 'admin' && (
+                    <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm">✓</span>
+                    </div>
+                  )}
+                </div>
+              </button>
             </div>
 
             <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4">

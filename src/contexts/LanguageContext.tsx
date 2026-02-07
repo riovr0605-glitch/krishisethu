@@ -41,6 +41,7 @@ const translations = {
     'nav.chat': 'Chat',
     'nav.profile': 'Profile',
     'nav.verification': 'Verification',
+    'nav.verification': 'Verify',
     'nav.disputes': 'Disputes',
     'nav.prices': 'Prices',
     'nav.schemes': 'Schemes',
